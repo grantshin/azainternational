@@ -1,0 +1,3 @@
+User-agent: *
+Allow:/
+Sitemap:https://azainternational.kr/sitemap.xml
