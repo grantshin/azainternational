@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AZA International | Global Material Sourcing</title>
+  <meta name="description" content="AZA International – Korea-based sourcing and consulting for technical fabrics, membranes, and protective materials." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#0a0a0c; --surface:#111116; --border:rgba(255,255,255,0.07);
+      --gold:#c9a84c; --gold-lt:#e8c96b; --white:#f0ede8; --muted:#888;
+      --font-d:'Bebas Neue',sans-serif;
+      --font-b:'DM Sans','Noto Sans KR','Noto Sans JP',sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--white);font-family:var(--font-b);font-size:16px;line-height:1.6;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.5}
+
+    /* LANG BAR */
+    .lang-bar{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:flex-end;align-items:center;padding:.35rem 4rem;background:rgba(7,7,9,.97);border-bottom:1px solid rgba(201,168,76,.15);gap:.4rem}
+    .lang-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--font-b);font-size:.72rem;letter-spacing:.1em;padding:.3rem .75rem;cursor:pointer;transition:all .2s}
+    .lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+    .lang-btn.active{background:var(--gold);border-color:var(--gold);color:#000;font-weight:700}
+
+    /* NAV */
+    nav{position:fixed;top:29px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 4rem;backdrop-filter:blur(18px);background:rgba(10,10,12,.8);border-bottom:1px solid var(--border);transition:padding .3s}
+    .nav-logo{font-family:var(--font-d);font-size:2rem;letter-spacing:.15em;color:var(--gold)}
+    .nav-logo span{color:var(--white)}
+    .nav-links{display:flex;gap:2.5rem;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase}
+    .nav-links a{color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{background:var(--gold);color:#000;padding:.55rem 1.4rem;font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,transform .2s}
+    .nav-cta:hover{background:var(--gold-lt);transform:translateY(-1px)}
+
+    /* HAMBURGER */
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem;background:none;border:none;z-index:10}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all .3s;border-radius:1px}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    /* MOBILE MENU */
+    .mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,12,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{font-family:var(--font-d);font-size:2.8rem;letter-spacing:.1em;color:var(--white);transition:color .2s}
+    .mobile-menu a:hover,.mobile-menu a:active{color:var(--gold)}
+    .mobile-cta-btn{background:var(--gold) !important;color:#000 !important;padding:.85rem 2.5rem;font-size:1rem !important;font-weight:700;letter-spacing:.1em;font-family:var(--font-b) !important}
+
+    /* SECTIONS */
+    section{padding:8rem 4rem}
+    .sec-tag{font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.75rem}
+    .sec-tag::before{content:'';display:block;width:1.5rem;height:1px;background:var(--gold)}
+    .sec-title{font-family:var(--font-d);font-size:clamp(2.8rem,5vw,5rem);line-height:1;margin-bottom:.5rem}
+    .sec-sub{font-size:clamp(.95rem,1.5vw,1.2rem);font-weight:300;color:var(--muted);margin-bottom:1.5rem}
+    .divider{width:3rem;height:2px;background:var(--gold);margin-bottom:3rem}
+
+    /* HERO */
+    #hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding:0}
+    .hero-left{display:flex;flex-direction:column;justify-content:center;padding:9rem 4rem 6rem;position:relative;z-index:2}
+    .hero-tag{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+    .hero-tag::before{content:'';display:block;width:2rem;height:1px;background:var(--gold)}
+    h1{font-family:var(--font-d);font-size:clamp(4rem,7vw,7.5rem);line-height:.95;letter-spacing:.02em;margin-bottom:1.5rem}
+    h1 em{font-style:normal;color:var(--gold);display:block}
+    .hero-sub{font-size:1rem;color:var(--muted);max-width:420px;margin-bottom:2.5rem;line-height:1.8}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3rem}
+    .btn-primary{background:var(--gold);color:#000;padding:.85rem 2rem;font-size:.85rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;transition:background .2s,transform .15s;display:inline-block}
+    .btn-primary:hover{background:var(--gold-lt);transform:translateY(-2px)}
+    .btn-outline{border:1px solid var(--border);color:var(--white);padding:.85rem 2rem;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;transition:border-color .2s,color .2s;display:inline-block}
+    .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+    .hero-stats{display:flex;gap:3rem;flex-wrap:wrap}
+    .stat-num{font-family:var(--font-d);font-size:2.5rem;color:var(--gold);line-height:1}
+    .stat-label{font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:.25rem}
+    .hero-right{position:relative;display:flex;align-items:center;justify-content:center}
+    .hero-grid{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(201,168,76,.08) 39px,rgba(201,168,76,.08) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(201,168,76,.08) 39px,rgba(201,168,76,.08) 40px)}
+    .hero-circle{width:clamp(300px,38vw,500px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(201,168,76,.18) 0%,transparent 70%);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;position:relative;animation:pulse 6s ease-in-out infinite}
+    .hero-circle::before{content:'';position:absolute;inset:20px;border-radius:50%;border:1px solid rgba(201,168,76,.1)}
+    .hero-circle::after{content:'';position:absolute;inset:50px;border-radius:50%;border:1px dashed rgba(201,168,76,.15)}
+    .hero-circle-text{font-family:var(--font-d);font-size:clamp(4rem,8vw,9rem);color:rgba(201,168,76,.12);letter-spacing:.1em;user-select:none}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+    /* SERVICES */
+    #services{background:var(--surface)}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--border)}
+    .service-card{padding:3rem 2.5rem;background:var(--bg);position:relative;overflow:hidden;transition:background .3s}
+    .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .service-card:hover{background:#13131a}
+    .service-card:hover::before{transform:scaleX(1)}
+    .service-icon{font-family:var(--font-d);font-size:4rem;color:rgba(201,168,76,.15);line-height:1;margin-bottom:1.5rem;transition:color .3s}
+    .service-card:hover .service-icon{color:var(--gold)}
+    .service-card h3{font-family:var(--font-d);font-size:1.8rem;letter-spacing:.05em;margin-bottom:.75rem}
+    .service-card p{font-size:.9rem;color:var(--muted);line-height:1.75}
+
+    /* WHY */
+    #why{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+    .why-visual{position:relative;height:480px}
+    .why-block{position:absolute;background:var(--surface);border:1px solid var(--border)}
+    .why-block-1{width:70%;height:70%;top:0;left:0}
+    .why-block-2{width:55%;height:55%;bottom:0;right:0;border-color:var(--gold);border-width:2px}
+    .why-block-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+    .why-block-1 .why-block-inner{background:repeating-linear-gradient(45deg,transparent,transparent 10px,rgba(201,168,76,.03) 10px,rgba(201,168,76,.03) 11px)}
+    .why-big-num{font-family:var(--font-d);font-size:5rem;color:var(--gold);line-height:1}
+    .why-big-label{font-size:.72rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:.5rem}
+    .why-list{list-style:none}
+    .why-list li{padding:1.25rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:1.2rem}
+    .why-list li:last-child{border-bottom:none}
+    .why-num{font-family:var(--font-d);font-size:1.5rem;color:var(--gold);min-width:2rem}
+    .why-text h4{font-size:.95rem;font-weight:600;margin-bottom:.3rem}
+    .why-text p{font-size:.85rem;color:var(--muted);line-height:1.7}
+
+    /* PRODUCTS */
+    #products{background:var(--surface)}
+    .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .product-card{background:var(--bg);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+    .product-card:hover{border-color:rgba(201,168,76,.4);transform:translateY(-4px)}
+    .product-card.featured{grid-column:span 2;background:linear-gradient(135deg,#111116 60%,rgba(201,168,76,.07));border-color:rgba(201,168,76,.3)}
+    .product-tag{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+    .product-card h3{font-family:var(--font-d);font-size:2rem;margin-bottom:.5rem}
+    .product-card p{font-size:.88rem;color:var(--muted);line-height:1.75}
+    .product-icon{position:absolute;right:1.5rem;bottom:1.5rem;font-size:5rem;opacity:.05;font-family:var(--font-d);line-height:1}
+
+    /* PROCESS */
+    #process{background:var(--bg)}
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:4rem;position:relative}
+    .process-steps::before{content:'';position:absolute;top:2.5rem;left:calc(12.5% + 1rem);right:calc(12.5% + 1rem);height:1px;background:var(--gold);opacity:.25}
+    .process-step{text-align:center;padding:0 1.5rem}
+    .step-circle{width:5rem;height:5rem;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;background:var(--bg);position:relative;z-index:1;font-family:var(--font-d);font-size:1.8rem;color:var(--gold);transition:background .3s}
+    .process-step:hover .step-circle{background:rgba(201,168,76,.1)}
+    .process-step h4{font-family:var(--font-d);font-size:1.3rem;margin-bottom:.4rem}
+    .process-step p{font-size:.82rem;color:var(--muted);margin-top:.6rem;line-height:1.7}
+
+    /* TESTIMONIALS */
+    #testimonials{background:var(--surface)}
+    .testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+    .testimonial-card{border:1px solid var(--border);padding:2.5rem;background:var(--bg);transition:border-color .3s}
+    .testimonial-card:hover{border-color:rgba(201,168,76,.3)}
+    .quote-mark{font-family:var(--font-d);font-size:5rem;color:rgba(201,168,76,.15);line-height:.8;margin-bottom:1rem}
+    .testimonial-card p{font-size:.9rem;color:#bbb;line-height:1.8;font-style:italic}
+    .testimonial-author{margin-top:1.5rem;display:flex;align-items:center;gap:1rem}
+    .author-avatar{width:2.5rem;height:2.5rem;border-radius:50%;background:linear-gradient(135deg,var(--gold),rgba(201,168,76,.3));display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-size:1.1rem;color:#000;flex-shrink:0}
+    .author-name{font-size:.85rem;font-weight:600}
+    .author-loc{font-size:.75rem;color:var(--muted)}
+
+    /* ABOUT */
+    #about{background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+    .about-text p{font-size:.95rem;color:var(--muted);line-height:1.9;margin-bottom:1rem}
+    .about-values{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
+    .value-item{background:var(--surface);border:1px solid var(--border);padding:1.5rem;transition:border-color .3s}
+    .value-item:hover{border-color:var(--gold)}
+    .value-item .vi-letter{font-family:var(--font-d);font-size:2.5rem;color:var(--gold);line-height:1}
+    .value-item h5{font-size:.85rem;margin-top:.5rem;font-weight:500}
+    .about-visual{position:relative;height:440px}
+    .av-block-1{position:absolute;top:0;left:0;width:65%;height:70%;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center}
+    .av-block-2{position:absolute;bottom:0;right:0;width:55%;height:55%;background:var(--surface);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center}
+    .av-inner{text-align:center}
+    .av-inner .big{font-family:var(--font-d);font-size:3rem;color:var(--gold)}
+    .av-inner .small{font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.4rem}
+
+    /* CONTACT */
+    #contact{background:var(--surface)}
+    .contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+    .ci-item{display:flex;gap:1.2rem;align-items:flex-start;padding:1.5rem 0;border-bottom:1px solid var(--border)}
+    .ci-label{font-size:.72rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.3rem}
+    .ci-value{font-size:.95rem}
+    .ci-icon{font-family:var(--font-d);font-size:1.5rem;color:var(--gold);min-width:2rem}
+    .contact-form{display:flex;flex-direction:column;gap:1rem}
+    .form-group label{display:block;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+    .form-group input,.form-group textarea,.form-group select{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--white);padding:.85rem 1.1rem;font-family:var(--font-b);font-size:.9rem;outline:none;transition:border-color .2s;-webkit-appearance:none}
+    .form-group select option{background:var(--bg)}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--gold)}
+    .form-group textarea{height:140px;resize:vertical}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .form-submit{background:var(--gold);color:#000;border:none;padding:1rem 2.5rem;font-family:var(--font-b);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .15s;align-self:flex-start}
+    .form-submit:hover{background:var(--gold-lt);transform:translateY(-2px)}
+    .form-note{font-size:.75rem;color:var(--muted);margin-top:.4rem}
+    #formStatus{display:none;padding:1rem 1.5rem;font-size:.88rem;border-left:3px solid var(--gold);margin-bottom:.5rem}
+
+    /* FOOTER */
+    footer{background:#070709;border-top:1px solid var(--border);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .footer-logo{font-family:var(--font-d);font-size:1.8rem;letter-spacing:.15em;color:var(--gold)}
+    .footer-logo span{color:var(--white)}
+    .footer-copy{font-size:.78rem;color:var(--muted)}
+    .footer-links{display:flex;gap:2rem}
+    .footer-links a{font-size:.78rem;color:var(--muted);transition:color .2s}
+    .footer-links a:hover{color:var(--gold)}
+
+    /* REVEAL */
+    .reveal{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+    .js-ready .reveal{opacity:0;transform:translateY(28px)}
+    .js-ready .reveal.visible{opacity:1;transform:none}
+
+    /* TABLET */
+    @media(max-width:900px){
+      .lang-bar{padding:.35rem 1.5rem}
+      nav{padding:1rem 1.5rem}
+      .nav-links,.nav-cta{display:none}
+      .hamburger{display:flex}
+      section{padding:5rem 1.5rem}
+      #hero{grid-template-columns:1fr;min-height:auto}
+      .hero-left{padding:6rem 1.5rem 3rem}
+      .hero-right{display:none}
+      #why,#about{grid-template-columns:1fr;gap:3rem}
+      .why-visual,.about-visual{height:260px}
+      .products-grid{grid-template-columns:1fr}
+      .product-card.featured{grid-column:span 1}
+      .process-steps{grid-template-columns:1fr 1fr;gap:2rem}
+      .process-steps::before{display:none}
+      .testimonials-grid{grid-template-columns:1fr}
+      .contact-inner{grid-template-columns:1fr;gap:3rem}
+      .form-grid{grid-template-columns:1fr}
+      footer{flex-direction:column;text-align:center}
+      .footer-links{justify-content:center;flex-wrap:wrap;gap:1.2rem}
+    }
+
+    /* MOBILE */
+    @media(max-width:480px){
+      .lang-bar{padding:.3rem 1rem;gap:.25rem}
+      .lang-btn{font-size:.65rem;padding:.25rem .55rem}
+      nav{padding:.85rem 1rem}
+      .nav-logo{font-size:1.5rem}
+      section{padding:4rem 1rem}
+      .hero-left{padding:5rem 1rem 2rem}
+      h1{font-size:3rem}
+      .hero-btns{flex-direction:column}
+      .btn-primary,.btn-outline{text-align:center;padding:.85rem 1.5rem;width:100%;display:block}
+      .hero-stats{gap:1.5rem}
+      .stat-num{font-size:2rem}
+      .sec-title{font-size:2.2rem}
+      .services-grid{grid-template-columns:1fr}
+      .service-card{padding:2rem 1.5rem}
+      .why-visual{display:none}
+      .product-card{padding:1.5rem}
+      .process-steps{grid-template-columns:1fr;gap:2rem}
+      .step-circle{width:4rem;height:4rem;font-size:1.4rem}
+      .about-visual{display:none}
+      .about-values{grid-template-columns:1fr 1fr;gap:.75rem}
+      .value-item{padding:1rem}
+      .form-group input,.form-group textarea,.form-group select{font-size:16px}
+      .form-submit{width:100%;text-align:center}
+      footer{padding:2rem 1rem}
+      .footer-logo{font-size:1.4rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <button class="lang-btn active" id="btn-en">EN</button>
+  <button class="lang-btn" id="btn-ko">한국어</button>
+  <button class="lang-btn" id="btn-ja">日本語</button>
+</div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo">AZA<span> INTL</span></div>
+  <div class="nav-links">
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#products" data-i18n="nav.products">Products</a>
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta" data-i18n="nav.cta">Get in Touch</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" type="button">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" class="mob-link" data-i18n="nav.services">Services</a>
+  <a href="#products" class="mob-link" data-i18n="nav.products">Products</a>
+  <a href="#about" class="mob-link" data-i18n="nav.about">About</a>
+  <a href="#contact" class="mob-link" data-i18n="nav.contact">Contact</a>
+  <a href="#contact" class="mob-link mobile-cta-btn" data-i18n="nav.cta">Get in Touch</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag" data-i18n="hero.tag">Korea · Global · Reliable</div>
+    <h1>BEYOND<br><em>FABRIC.</em><br>BEYOND<br>BORDERS.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">We connect global buyers to Korea's best material suppliers — faster, smarter, with zero guesswork.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary" data-i18n="hero.btn1">Our Services</a>
+      <a href="#contact" class="btn-outline" data-i18n="hero.btn2">Contact Us</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">15+</div>
+        <div class="stat-label" data-i18n="hero.stat1">Years in Business</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label" data-i18n="hero.stat2">Global Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label" data-i18n="hero.stat3">Specializations</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-grid"></div>
+    <div class="hero-circle"><div class="hero-circle-text">AZA</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="sec-tag" data-i18n="services.tag">What We Do</div>
+  <div class="sec-title" data-i18n="services.title">OUR SERVICES</div>
+  <div class="sec-sub" data-i18n="services.sub">Precise. Proven. Professional.</div>
+  <div class="divider"></div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-icon">C</div>
+      <h3 data-i18n="s.c.t">Consulting</h3>
+      <p data-i18n="s.c.d">Expert guidance on fabrics, membranes, and technical materials. We assess your needs and recommend the right solution — no fluff, no waste.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">F</div>
+      <h3 data-i18n="s.f.t">Product Sourcing</h3>
+      <p data-i18n="s.f.d">We identify the exact material your project demands, drawing on our exclusive network across Korea and Asia.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">K</div>
+      <h3 data-i18n="s.k.t">Korea Sourcing</h3>
+      <p data-i18n="s.k.d">On-the-ground access to Korea's top-tier manufacturers. We handle vendor vetting, QC, and logistics — end to end.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">R</div>
+      <h3 data-i18n="s.r.t">R&amp;D Support</h3>
+      <p data-i18n="s.r.d">From prototype to mass production, we co-develop materials that meet your exact technical specifications.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY AZA -->
+<section id="why" style="background:var(--bg)">
+  <div class="why-left reveal">
+    <div class="sec-tag" data-i18n="why.tag">Why AZA</div>
+    <div class="sec-title">YOUR EDGE IN<br>GLOBAL<br>SOURCING</div>
+    <div class="sec-sub" data-i18n="why.sub">What sets us apart</div>
+    <div class="divider"></div>
+    <ul class="why-list">
+      <li><div class="why-num">01</div><div class="why-text"><h4 data-i18n="w.1.t">Established Korean Network</h4><p data-i18n="w.1.d">Direct relationships with Korea's leading fabric, membrane, and technical material manufacturers — built over decades.</p></div></li>
+      <li><div class="why-num">02</div><div class="why-text"><h4 data-i18n="w.2.t">Full-Cycle Management</h4><p data-i18n="w.2.d">Sourcing, sampling, QC, documentation, and delivery. One point of contact. Zero blind spots.</p></div></li>
+      <li><div class="why-num">03</div><div class="why-text"><h4 data-i18n="w.3.t">Clear Communication</h4><p data-i18n="w.3.d">No middlemen. Honest, timely updates at every stage of your project.</p></div></li>
+      <li><div class="why-num">04</div><div class="why-text"><h4 data-i18n="w.4.t">Proven Global Track Record</h4><p data-i18n="w.4.d">Clients across the US, Asia, and beyond — spanning fashion, medical, and industrial sectors.</p></div></li>
+    </ul>
+  </div>
+  <div class="why-visual reveal">
+    <div class="why-block why-block-1"><div class="why-block-inner"><div class="why-big-num">A-Z</div><div class="why-big-label" data-i18n="w.v1">Full Spectrum</div></div></div>
+    <div class="why-block why-block-2"><div class="why-block-inner"><div class="why-big-num">KR</div><div class="why-big-label" data-i18n="w.v2">Korea Based</div></div></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="products-header reveal">
+    <div class="sec-tag" data-i18n="p.tag">Products</div>
+    <div class="sec-title" data-i18n="p.title">WHAT WE SOURCE</div>
+    <div class="sec-sub" data-i18n="p.sub">Materials built for performance</div>
+    <div class="divider"></div>
+  </div>
+  <div class="products-grid reveal">
+    <div class="product-card featured">
+      <div class="product-tag" data-i18n="p.1.tag">⭐ Core Product</div>
+      <h3 data-i18n="p.1.t">Technical Fabrics</h3>
+      <p data-i18n="p.1.d">Premium woven and non-woven fabrics for fashion, industrial, outdoor, and medical use. Sourced directly from Korea's top mills under strict QC.</p>
+      <div class="product-icon">F</div>
+    </div>
+    <div class="product-card">
+      <div class="product-tag" data-i18n="p.2.tag">Industrial</div>
+      <h3 data-i18n="p.2.t">Membranes</h3>
+      <p data-i18n="p.2.d">Breathable, waterproof membranes engineered for high-performance apparel and demanding technical applications.</p>
+      <div class="product-icon">M</div>
+    </div>
+    <div class="product-card">
+      <div class="product-tag" data-i18n="p.3.tag">Protection</div>
+      <h3 data-i18n="p.3.t">Knuckle Protectors</h3>
+      <p data-i18n="p.3.d">Precision-engineered protection materials for sports, industrial, and safety applications.</p>
+      <div class="product-icon">K</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="sec-tag reveal" data-i18n="proc.tag">How We Work</div>
+  <div class="sec-title reveal" data-i18n="proc.title">THE AZA PROCESS</div>
+  <div class="sec-sub reveal" data-i18n="proc.sub">Simple. Structured. Reliable.</div>
+  <div class="divider reveal"></div>
+  <div class="process-steps reveal">
+    <div class="process-step"><div class="step-circle">01</div><h4 data-i18n="pr.1.t">Consult</h4><p data-i18n="pr.1.d">We listen first. Requirements, timeline, and budget — fully understood before anything moves.</p></div>
+    <div class="process-step"><div class="step-circle">02</div><h4 data-i18n="pr.2.t">Source</h4><p data-i18n="pr.2.d">We activate our network to find the best-matched suppliers and targeted samples.</p></div>
+    <div class="process-step"><div class="step-circle">03</div><h4 data-i18n="pr.3.t">Develop</h4><p data-i18n="pr.3.d">Iterative sampling and testing until the product meets your exact specification.</p></div>
+    <div class="process-step"><div class="step-circle">04</div><h4 data-i18n="pr.4.t">Deliver</h4><p data-i18n="pr.4.d">QC-verified delivery, full documentation, and continued support after handover.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" style="background:var(--surface)">
+  <div class="sec-tag reveal" data-i18n="t.tag">Client Voices</div>
+  <div class="sec-title reveal" data-i18n="t.title">WHAT CLIENTS SAY</div>
+  <div class="sec-sub reveal" data-i18n="t.sub">Trusted by buyers worldwide</div>
+  <div class="divider reveal"></div>
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card"><div class="quote-mark">"</div><p data-i18n="t.1">AZA's consultation was precise and their follow-through impeccable. Every project delivered exactly as promised.</p><div class="testimonial-author"><div class="author-avatar">D</div><div><div class="author-name">Dr. Dong Ok</div><div class="author-loc">Los Angeles, USA</div></div></div></div>
+    <div class="testimonial-card"><div class="quote-mark">"</div><p data-i18n="t.2">Their structured approach saved us months of trial and error. AZA understood our needs from day one.</p><div class="testimonial-author"><div class="author-avatar">S</div><div><div class="author-name">Sophie</div><div class="author-loc">United States</div></div></div></div>
+    <div class="testimonial-card"><div class="quote-mark">"</div><p data-i18n="t.3">Efficient, reliable, professional. AZA managed everything — we just received results.</p><div class="testimonial-author"><div class="author-avatar">J</div><div><div class="author-name">Jason</div><div class="author-loc">Hong Kong</div></div></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text reveal">
+    <div class="sec-tag" data-i18n="a.tag">About Us</div>
+    <div class="sec-title" data-i18n="a.title">WHO WE ARE</div>
+    <div class="sec-sub" data-i18n="a.sub">Built on trust. Driven by results.</div>
+    <div class="divider"></div>
+    <p data-i18n="a.p1">AZA International is a Korea-based sourcing and consulting firm specializing in technical fabrics, membranes, and protective materials. We serve brands, manufacturers, and buyers worldwide who need a dependable partner in Korea.</p>
+    <p data-i18n="a.p2">Our standard: deliver the right product, on time, to specification — every time. No exceptions.</p>
+    <div class="about-values">
+      <div class="value-item"><div class="vi-letter">C</div><h5 data-i18n="a.v1">Consulting</h5></div>
+      <div class="value-item"><div class="vi-letter">F</div><h5 data-i18n="a.v2">Sourcing</h5></div>
+      <div class="value-item"><div class="vi-letter">K</div><h5 data-i18n="a.v3">Korea Network</h5></div>
+      <div class="value-item"><div class="vi-letter">R</div><h5 data-i18n="a.v4">R&amp;D</h5></div>
+    </div>
+  </div>
+  <div class="about-visual reveal">
+    <div class="av-block-1"><div class="av-inner"><div class="big" style="font-size:5rem;opacity:.12">AZA</div></div></div>
+    <div class="av-block-2"><div class="av-inner"><div class="big">KOREA</div><div class="small" data-i18n="a.vis">Est. 2021 · Global Sourcing</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--surface)">
+  <div class="sec-tag reveal" data-i18n="c.tag">Get In Touch</div>
+  <div class="sec-title reveal">LET'S WORK<br>TOGETHER</div>
+  <div class="sec-sub reveal" data-i18n="c.sub">Ready to source smarter?</div>
+  <div class="divider reveal"></div>
+  <div class="contact-inner reveal">
+    <div class="contact-info">
+      <div class="ci-item"><div class="ci-icon">✉</div><div><div class="ci-label" data-i18n="c.email">Email</div><div class="ci-value">grant.shin@gmail.com</div></div></div>
+      <div class="ci-item"><div class="ci-icon">🌐</div><div><div class="ci-label" data-i18n="c.web">Website</div><div class="ci-value">azainternational.kr</div></div></div>
+      <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label" data-i18n="c.loc">Location</div><div class="ci-value" data-i18n="c.locv">Seoul, South Korea</div></div></div>
+      <div class="ci-item"><div class="ci-icon">🕐</div><div><div class="ci-label" data-i18n="c.hours">Business Hours</div><div class="ci-value">Mon – Fri, 09:00 – 18:00 KST</div></div></div>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <input type="hidden" name="access_key" value="6c898010-61cb-49fd-9c91-e756b8e66b05" />
+      <input type="hidden" name="from_name" value="AZA International Website" />
+      <input type="checkbox" name="botcheck" style="display:none" />
+      <input type="hidden" name="subject" id="fSubject" value="[AZA International] New Inquiry" />
+      <div class="form-grid">
+        <div class="form-group"><label data-i18n="f.name">Name *</label><input type="text" name="name" required /></div>
+        <div class="form-group"><label data-i18n="f.co">Company</label><input type="text" name="company" /></div>
+      </div>
+      <div class="form-group"><label data-i18n="f.email">Email *</label><input type="email" name="email" placeholder="your@email.com" required /></div>
+      <div class="form-group">
+        <label data-i18n="f.prod">Product Interest</label>
+        <select name="product">
+          <option value="" data-i18n="f.sel">-- Select --</option>
+          <option data-i18n="f.o1">Technical Fabrics</option>
+          <option data-i18n="f.o2">Membranes</option>
+          <option data-i18n="f.o3">Knuckle Protectors</option>
+          <option data-i18n="f.o4">Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label data-i18n="f.msg">Message *</label><textarea name="message" required></textarea></div>
+      <div id="formStatus"></div>
+      <button type="submit" class="form-submit" id="submitBtn"><span data-i18n="f.sub">Send Inquiry</span></button>
+      <p class="form-note" data-i18n="f.note">Sent securely. We respond within 1 business day.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AZA<span> INTERNATIONAL</span></div>
+  <div class="footer-copy">© 2025 AZA International. All rights reserved.<br><span style="font-size:.7rem;color:#333" data-i18n="ft.sub">Korea-based global sourcing & consulting</span></div>
+  <div class="footer-links">
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#products" data-i18n="nav.products">Products</a>
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// ── TRANSLATIONS ──────────────────────────────────────────────────
+const T = {
+  en: {
+    "nav.services":"Services","nav.products":"Products","nav.about":"About","nav.contact":"Contact","nav.cta":"Get in Touch",
+    "hero.tag":"Korea · Global · Reliable",
+    "hero.sub":"We connect global buyers to Korea's best material suppliers — faster, smarter, with zero guesswork.",
+    "hero.btn1":"Our Services","hero.btn2":"Contact Us",
+    "hero.stat1":"Years in Business","hero.stat2":"Global Clients","hero.stat3":"Specializations",
+    "services.tag":"What We Do","services.title":"OUR SERVICES","services.sub":"Precise. Proven. Professional.",
+    "s.c.t":"Consulting","s.c.d":"Expert guidance on fabrics, membranes, and technical materials. We assess your needs and recommend the right solution — no fluff, no waste.",
+    "s.f.t":"Product Sourcing","s.f.d":"We identify the exact material your project demands, drawing on our exclusive network across Korea and Asia.",
+    "s.k.t":"Korea Sourcing","s.k.d":"On-the-ground access to Korea's top-tier manufacturers. We handle vendor vetting, QC, and logistics — end to end.",
+    "s.r.t":"R&D Support","s.r.d":"From prototype to mass production, we co-develop materials that meet your exact technical specifications.",
+    "why.tag":"Why AZA","why.sub":"What sets us apart",
+    "w.1.t":"Established Korean Network","w.1.d":"Direct relationships with Korea's leading fabric, membrane, and technical material manufacturers — built over decades.",
+    "w.2.t":"Full-Cycle Management","w.2.d":"Sourcing, sampling, QC, documentation, and delivery. One point of contact. Zero blind spots.",
+    "w.3.t":"Clear Communication","w.3.d":"No middlemen. Honest, timely updates at every stage of your project.",
+    "w.4.t":"Proven Global Track Record","w.4.d":"Clients across the US, Asia, and beyond — spanning fashion, medical, and industrial sectors.",
+    "w.v1":"Full Spectrum","w.v2":"Korea Based",
+    "p.tag":"Products","p.title":"WHAT WE SOURCE","p.sub":"Materials built for performance",
+    "p.1.tag":"⭐ Core Product","p.1.t":"Technical Fabrics","p.1.d":"Premium woven and non-woven fabrics for fashion, industrial, outdoor, and medical use. Sourced directly from Korea's top mills under strict QC.",
+    "p.2.tag":"Industrial","p.2.t":"Membranes","p.2.d":"Breathable, waterproof membranes engineered for high-performance apparel and demanding technical applications.",
+    "p.3.tag":"Protection","p.3.t":"Knuckle Protectors","p.3.d":"Precision-engineered protection materials for sports, industrial, and safety applications.",
+    "proc.tag":"How We Work","proc.title":"THE AZA PROCESS","proc.sub":"Simple. Structured. Reliable.",
+    "pr.1.t":"Consult","pr.1.d":"We listen first. Requirements, timeline, and budget — fully understood before anything moves.",
+    "pr.2.t":"Source","pr.2.d":"We activate our network to find the best-matched suppliers and targeted samples.",
+    "pr.3.t":"Develop","pr.3.d":"Iterative sampling and testing until the product meets your exact specification.",
+    "pr.4.t":"Deliver","pr.4.d":"QC-verified delivery, full documentation, and continued support after handover.",
+    "t.tag":"Client Voices","t.title":"WHAT CLIENTS SAY","t.sub":"Trusted by buyers worldwide",
+    "t.1":"AZA's consultation was precise and their follow-through impeccable. Every project delivered exactly as promised.",
+    "t.2":"Their structured approach saved us months of trial and error. AZA understood our needs from day one.",
+    "t.3":"Efficient, reliable, professional. AZA managed everything — we just received results.",
+    "a.tag":"About Us","a.title":"WHO WE ARE","a.sub":"Built on trust. Driven by results.",
+    "a.p1":"AZA International is a Korea-based sourcing and consulting firm specializing in technical fabrics, membranes, and protective materials. We serve brands, manufacturers, and buyers worldwide who need a dependable partner in Korea.",
+    "a.p2":"Our standard: deliver the right product, on time, to specification — every time. No exceptions.",
+    "a.v1":"Consulting","a.v2":"Sourcing","a.v3":"Korea Network","a.v4":"R&D","a.vis":"Est. 2021 · Global Sourcing",
+    "c.tag":"Get In Touch","c.sub":"Ready to source smarter?","c.email":"Email","c.web":"Website","c.loc":"Location","c.locv":"Seoul, South Korea","c.hours":"Business Hours",
+    "f.name":"Name *","f.co":"Company","f.email":"Email *","f.prod":"Product Interest","f.sel":"-- Select --","f.o1":"Technical Fabrics","f.o2":"Membranes","f.o3":"Knuckle Protectors","f.o4":"Other",
+    "f.msg":"Message *","f.sub":"Send Inquiry","f.note":"Sent securely. We respond within 1 business day.",
+    "f.ok":"✅ Inquiry received. We'll be in touch within 1 business day.","f.err":"❌ Delivery failed. Email us: grant.shin@gmail.com","f.sending":"Sending…",
+    "ft.sub":"Korea-based global sourcing & consulting","fsubj":"[AZA International] New Inquiry"
+  },
+  ko: {
+    "nav.services":"서비스","nav.products":"제품","nav.about":"회사소개","nav.contact":"문의","nav.cta":"문의하기",
+    "hero.tag":"한국 · 글로벌 · 신뢰",
+    "hero.sub":"전 세계 바이어와 한국 최고의 소재 공급사를 연결합니다. 빠르고, 정확하고, 확실하게.",
+    "hero.btn1":"서비스 보기","hero.btn2":"문의하기",
+    "hero.stat1":"업력","hero.stat2":"글로벌 고객사","hero.stat3":"전문 분야",
+    "services.tag":"주요 서비스","services.title":"서비스 안내","services.sub":"정확하고. 검증된. 전문적인.",
+    "s.c.t":"컨설팅","s.c.d":"원단, 멤브레인, 기술 소재에 대한 전문 컨설팅. 고객의 니즈를 정확히 파악하고, 최적의 솔루션만을 제안합니다.",
+    "s.f.t":"제품 소싱","s.f.d":"한국·아시아 네트워크를 통해 프로젝트에 꼭 맞는 소재를 발굴합니다. 시간 낭비 없이 정확하게.",
+    "s.k.t":"한국 소싱","s.k.d":"한국 현지 최고 제조사에 직접 접근합니다. 공급업체 검증, 품질 관리, 물류까지 원스톱 처리.",
+    "s.r.t":"연구개발 지원","s.r.d":"샘플 제작부터 양산까지, 고객의 정확한 기술 사양에 맞는 소재를 함께 개발합니다.",
+    "why.tag":"왜 AZA인가","why.sub":"우리가 다른 이유",
+    "w.1.t":"검증된 한국 제조 네트워크","w.1.d":"수십 년에 걸쳐 구축한 한국 최고 원단·멤브레인·기술 소재 제조사와의 직접 파트너십.",
+    "w.2.t":"전 과정 단일 창구","w.2.d":"소싱, 샘플링, 품질 관리, 서류, 납품까지. 담당자 하나. 빈틈 없는 관리.",
+    "w.3.t":"명확한 커뮤니케이션","w.3.d":"중간 단계 없음. 프로젝트 전 단계에서 정직하고 신속한 업데이트.",
+    "w.4.t":"검증된 글로벌 실적","w.4.d":"미국, 아시아 등 전 세계 패션·의료·산업 분야 고객사와의 납품 이력.",
+    "w.v1":"전 영역 커버","w.v2":"한국 기반",
+    "p.tag":"취급 제품","p.title":"우리의 소재","p.sub":"성능을 위한 소재",
+    "p.1.tag":"⭐ 핵심 제품","p.1.t":"기능성 원단","p.1.d":"패션, 산업, 아웃도어, 의료용 프리미엄 원단. 한국 최고 공장에서 엄격한 품질 관리 하에 직접 조달.",
+    "p.2.tag":"산업용","p.2.t":"멤브레인","p.2.d":"고성능 의류 및 기술적 용도를 위한 통기성·방수 멤브레인.",
+    "p.3.tag":"보호용","p.3.t":"너클 보호대","p.3.d":"스포츠, 산업, 안전 분야를 위한 정밀 설계 보호 소재.",
+    "proc.tag":"업무 방식","proc.title":"AZA 프로세스","proc.sub":"단순하고. 체계적이고. 신뢰할 수 있는.",
+    "pr.1.t":"초기 상담","pr.1.d":"먼저 경청합니다. 요구 사항, 일정, 예산을 완전히 파악한 후 진행합니다.",
+    "pr.2.t":"소재 소싱","pr.2.d":"네트워크를 가동해 최적의 공급업체를 선별하고 샘플을 확보합니다.",
+    "pr.3.t":"개발 & 검증","pr.3.d":"정확한 사양을 충족할 때까지 반복 샘플링과 테스트를 진행합니다.",
+    "pr.4.t":"납품 & 사후관리","pr.4.d":"품질 검증된 납품, 완전한 서류 제공, 인도 후 지속적인 지원.",
+    "t.tag":"고객 후기","t.title":"고객의 말","t.sub":"전 세계 바이어가 신뢰합니다",
+    "t.1":"AZA의 컨설팅은 정확했고 실행력은 완벽했습니다. 약속한 대로 모든 프로젝트가 납품되었습니다.",
+    "t.2":"체계적인 접근 방식 덕분에 수개월의 시행착오를 줄일 수 있었습니다. 처음부터 우리의 니즈를 정확히 파악했습니다.",
+    "t.3":"효율적이고, 신뢰할 수 있고, 전문적입니다. AZA가 모든 것을 관리해 주었고, 우리는 결과만 받았습니다.",
+    "a.tag":"회사 소개","a.title":"AZA 소개","a.sub":"신뢰를 기반으로. 결과로 증명합니다.",
+    "a.p1":"AZA International은 기능성 원단, 멤브레인, 보호 소재를 전문으로 하는 한국 기반 소싱·컨설팅 기업입니다. 한국 현지의 믿을 수 있는 파트너가 필요한 전 세계 브랜드, 제조사, 바이어를 위해 서비스합니다.",
+    "a.p2":"우리의 기준: 올바른 제품을, 제때, 사양대로. 예외는 없습니다.",
+    "a.v1":"컨설팅","a.v2":"소싱","a.v3":"한국 네트워크","a.v4":"연구개발","a.vis":"설립 2021 · 글로벌 소싱",
+    "c.tag":"문의하기","c.sub":"더 스마트한 소싱, 지금 시작하세요.","c.email":"이메일","c.web":"웹사이트","c.loc":"소재지","c.locv":"대한민국 서울","c.hours":"영업시간",
+    "f.name":"이름 *","f.co":"회사명","f.email":"이메일 *","f.prod":"관심 제품","f.sel":"-- 선택해 주세요 --","f.o1":"기능성 원단","f.o2":"멤브레인","f.o3":"너클 보호대","f.o4":"기타",
+    "f.msg":"메시지 *","f.sub":"문의 보내기","f.note":"안전하게 전송됩니다. 영업일 기준 1일 이내 답변드립니다.",
+    "f.ok":"✅ 문의가 접수되었습니다. 영업일 기준 1일 이내 연락드리겠습니다.","f.err":"❌ 전송 실패. 이메일로 문의해 주세요: grant.shin@gmail.com","f.sending":"전송 중…",
+    "ft.sub":"한국 기반 글로벌 소싱 & 컨설팅","fsubj":"[AZA International] 새 문의가 도착했습니다"
+  },
+  ja: {
+    "nav.services":"サービス","nav.products":"製品","nav.about":"会社概要","nav.contact":"お問い合わせ","nav.cta":"お問い合わせ",
+    "hero.tag":"韓国 · グローバル · 信頼",
+    "hero.sub":"世界中のバイヤーと韓国最高素材サプライヤーをつなぎます。より速く、より賢く、確実に。",
+    "hero.btn1":"サービスを見る","hero.btn2":"お問い合わせ",
+    "hero.stat1":"年の実績","hero.stat2":"グローバルクライアント","hero.stat3":"専門分野",
+    "services.tag":"主なサービス","services.title":"サービス紹介","services.sub":"的確。実証済み。プロフェッショナル。",
+    "s.c.t":"コンサルティング","s.c.d":"生地、メンブレン、技術素材の専門コンサルティング。ニーズを正確に把握し、最適な解決策のみをご提案。",
+    "s.f.t":"製品調達","s.f.d":"韓国・アジアの独自ネットワークを通じ、プロジェクトに最適な素材を無駄なく迅速に発掘します。",
+    "s.k.t":"韓国ソーシング","s.k.d":"韓国トップメーカーへの直接アクセス。ベンダー審査、品質管理、物流まで一括対応。",
+    "s.r.t":"研究開発支援","s.r.d":"サンプル製作から量産まで、お客様の正確な技術仕様に合わせた素材を共同開発します。",
+    "why.tag":"なぜAZAなのか","why.sub":"私たちが選ばれる理由",
+    "w.1.t":"確立された韓国製造ネットワーク","w.1.d":"韓国トップの生地・メンブレン・技術素材メーカーとの直接パートナーシップ。数十年にわたって構築した関係です。",
+    "w.2.t":"全工程一元管理","w.2.d":"調達、サンプリング、品質管理、書類、納品まで。担当者一名。抜け漏れなし。",
+    "w.3.t":"明確なコミュニケーション","w.3.d":"仲介業者なし。全工程において誠実かつタイムリーな情報提供。",
+    "w.4.t":"実証済みのグローバル実績","w.4.d":"米国・アジアをはじめ、ファッション・医療・産業分野のクライアントへの納品実績。",
+    "w.v1":"全領域カバー","w.v2":"韓国拠点",
+    "p.tag":"取扱製品","p.title":"取扱素材","p.sub":"性能のための素材",
+    "p.1.tag":"⭐ コア製品","p.1.t":"テクニカルファブリック","p.1.d":"ファッション・産業・アウトドア・医療向けプレミアム生地。韓国トップ工場から厳格な品質管理のもと直接調達。",
+    "p.2.tag":"産業用","p.2.t":"メンブレン","p.2.d":"高性能ウェアや技術用途向けの透湿・防水メンブレン。",
+    "p.3.tag":"保護用","p.3.t":"ナックルプロテクター","p.3.d":"スポーツ・産業・安全分野向けの精密設計保護素材。",
+    "proc.tag":"業務プロセス","proc.title":"AZAのプロセス","proc.sub":"シンプル。体系的。信頼できる。",
+    "pr.1.t":"ヒアリング","pr.1.d":"まず聞きます。要件・スケジュール・予算を完全に把握してから動き出します。",
+    "pr.2.t":"素材調達","pr.2.d":"ネットワークを活用し、最適なサプライヤーを選定してサンプルを確保します。",
+    "pr.3.t":"開発・検証","pr.3.d":"正確な仕様を満たすまで反復サンプリングとテストを実施します。",
+    "pr.4.t":"納品・サポート","pr.4.d":"品質検証済み納品、完全な書類提供、引き渡し後も継続サポート。",
+    "t.tag":"お客様の声","t.title":"クライアントの声","t.sub":"世界中のバイヤーに信頼されています",
+    "t.1":"AZAのコンサルティングは的確で、実行力は完璧でした。すべてのプロジェクトが約束通りに納品されました。",
+    "t.2":"体系的なアプローチのおかげで、数ヶ月分の試行錯誤を省くことができました。最初からニーズを正確に把握してくれました。",
+    "t.3":"効率的で、信頼でき、プロフェッショナル。AZAがすべてを管理し、私たちは結果を受け取るだけでした。",
+    "a.tag":"会社概要","a.title":"AZAについて","a.sub":"信頼を基に。実績で証明。",
+    "a.p1":"AZA Internationalは、テクニカルファブリック・メンブレン・保護素材を専門とする韓国拠点のソーシング・コンサルティング企業です。韓国現地の信頼できるパートナーを必要とする世界中のブランド・メーカー・バイヤーにサービスを提供します。",
+    "a.p2":"私たちの基準：正しい製品を、期日通りに、仕様通りに。例外なし。",
+    "a.v1":"コンサルティング","a.v2":"ソーシング","a.v3":"韓国ネットワーク","a.v4":"研究開発","a.vis":"設立 2021 · グローバルソーシング",
+    "c.tag":"お問い合わせ","c.sub":"より賢いソーシングを、今すぐ。","c.email":"メール","c.web":"ウェブサイト","c.loc":"所在地","c.locv":"大韓民国ソウル","c.hours":"営業時間",
+    "f.name":"お名前 *","f.co":"会社名","f.email":"メールアドレス *","f.prod":"関心製品","f.sel":"-- 選択してください --","f.o1":"テクニカルファブリック","f.o2":"メンブレン","f.o3":"ナックルプロテクター","f.o4":"その他",
+    "f.msg":"メッセージ *","f.sub":"送信する","f.note":"安全に送信されます。営業日1日以内にご返信いたします。",
+    "f.ok":"✅ お問い合わせを受信しました。1営業日以内にご連絡いたします。","f.err":"❌ 送信失敗。メールでお問い合わせください: grant.shin@gmail.com","f.sending":"送信中…",
+    "ft.sub":"韓国拠点のグローバルソーシング＆コンサルティング","fsubj":"[AZA International] 新しいお問い合わせ"
+  }
+};
+
+// ── LANG SWITCHER ─────────────────────────────────────
+let curLang = 'en';
+
+function applyLang(lang) {
+  curLang = lang;
+  const t = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] !== undefined) el.textContent = t[k];
+  });
+  document.getElementById('fSubject').value = t['fsubj'];
+  document.documentElement.lang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+  document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+}
+
+document.getElementById('btn-en').addEventListener('click', function() { applyLang('en'); });
+document.getElementById('btn-ko').addEventListener('click', function() { applyLang('ko'); });
+document.getElementById('btn-ja').addEventListener('click', function() { applyLang('ja'); });
+
+// ── HAMBURGER ─────────────────────────────────────────
+var hbg = document.getElementById('hamburger');
+var mob = document.getElementById('mobileMenu');
+
+hbg.addEventListener('click', function() {
+  var isOpen = mob.classList.contains('open');
+  if (isOpen) {
+    mob.classList.remove('open');
+    hbg.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    mob.classList.add('open');
+    hbg.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+});
+
+document.querySelectorAll('.mob-link').forEach(function(link) {
+  link.addEventListener('click', function() {
+    mob.classList.remove('open');
+    hbg.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// ── WEB3FORMS ─────────────────────────────────────────
+var cForm = document.getElementById('contactForm');
+var fStatus = document.getElementById('formStatus');
+var fBtn = document.getElementById('submitBtn');
+
+cForm.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  var t = T[curLang];
+  fBtn.disabled = true;
+  fBtn.querySelector('[data-i18n]').textContent = t['f.sending'];
+  fStatus.style.display = 'none';
+  try {
+    var res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(cForm) });
+    var json = await res.json();
+    if (json.success) {
+      fStatus.style.cssText = 'display:block;border-left:3px solid var(--gold);color:var(--white);padding:1rem 1.5rem;margin-bottom:.5rem';
+      fStatus.textContent = t['f.ok'];
+      cForm.reset();
+    } else { throw new Error(); }
+  } catch(err) {
+    fStatus.style.cssText = 'display:block;border-left:3px solid #e05555;color:#e05555;padding:1rem 1.5rem;margin-bottom:.5rem';
+    fStatus.textContent = t['f.err'];
+  }
+  fBtn.querySelector('[data-i18n]').textContent = T[curLang]['f.sub'];
+  fBtn.disabled = false;
+});
+
+// ── NAV SHRINK ────────────────────────────────────────
+window.addEventListener('scroll', function() {
+  document.getElementById('mainNav').style.padding = window.scrollY > 60 ? '.7rem 4rem' : '1.1rem 4rem';
+});
+
+// ── SCROLL REVEAL ─────────────────────────────────────
+document.body.classList.add('js-ready');
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e, i) {
+    if (e.isIntersecting) {
+      setTimeout(function() { e.target.classList.add('visible'); }, i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
+</script>
+</body>
+</html>
